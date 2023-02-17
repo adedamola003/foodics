@@ -59,10 +59,10 @@ class OrderController extends BaseController
      * @param int $id
      * @return JsonResponse
      */
-    public function getOrderDetails($id): JsonResponse
+    public function getOrderDetails(int $id): JsonResponse
     {
         //get order details
-        $orderDetails = $this->orderClass->getOrderDetails((int) $id);
+        $orderDetails = $this->orderClass->getOrderDetails($id);
         //check if order exists
         if ($orderDetails['status']){
             //return success response

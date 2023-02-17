@@ -31,10 +31,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], functi
     //Authenticated user routes
         //Order Routes
     Route::post('order/create', [OrderController::class, 'createOrder']);
-    Route::get('order/{id}', [OrderController::class, 'getOrderDetails']);
+    Route::get('order/{id}', [OrderController::class, 'getOrderDetails'])->where('id', '[0-9]+');
         //Ingredient Routes
     Route::get('ingredients', [IngredientController::class, 'getIngredients']);
-    Route::get('ingredients/{id}', [IngredientController::class, 'getIngredient']);
+    Route::get('ingredients/{id}', [IngredientController::class, 'getIngredient'])->where('id', '[0-9]+');
     Route::post('ingredients/top_up', [IngredientController::class, 'topUpIngredientStock']);
 
 

@@ -32,9 +32,9 @@ class IngredientController extends BaseController
      * @param int $id
      * @return JsonResponse
      */
-    public function getIngredient($id): \Illuminate\Http\JsonResponse
+    public function getIngredient(int $id): \Illuminate\Http\JsonResponse
     {
-        $ingredientData = $this->ingredientClass->getIngredientData((int)$id);
+        $ingredientData = $this->ingredientClass->getIngredientData($id);
         if(!$ingredientData['status']) {
             return $this->sendError($ingredientData['message'], $ingredientData['data']);
         }
