@@ -29,6 +29,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], functi
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Authenticated user routes
     Route::post('order/create', [OrderController::class, 'createOrder']);
+    Route::get('order/{id}', [OrderController::class, 'getOrderDetails']);
 
 
     });

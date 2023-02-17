@@ -131,6 +131,7 @@ class OrderClass
                 $orderData['total_order_price'] += $thisProduct->price * $product['quantity'];
 
             }
+            $orderData['total_order_price'] = formatNumber($orderData['total_order_price']);
             //check if item exists in low warning data array
             if (!empty($lowWarningData)) {
                 //send array to the low warning notification job
@@ -143,6 +144,30 @@ class OrderClass
             return ['status' => true, 'message' => $e->getMessage(), 'data' => []];
         }
         return ['status' => true, 'message' => 'Order created successfully', 'data' => $orderData];
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function getOrderDetails(int $id): array
+    {
+        $order = $this->Order::with(['orderItems.product'])->find($id);
+        if (!$order) {
+            return ['status' => false, 'message' => 'Order not found', 'data' => []];
+        }
+        $orderData = ['total_order_price' => 0, 'order' => []];
+        foreach ($order->orderItems as $orderItem) {
+            $orderData['order'][] = [
+                'product' => $orderItem->product->name,
+                'quantity' => $orderItem->quantity,
+                'unit_price' => formatNumber($orderItem->product->price),
+                'total_price' => formatNumber($orderItem->product->price * $orderItem->quantity),
+            ];
+            $orderData['total_order_price'] += $orderItem->product->price * $orderItem->quantity;
+        }
+        $orderData['total_order_price'] = formatNumber($orderData['total_order_price']);
+        return ['status' => true, 'message' => 'Order details', 'data' => $orderData];
     }
 
 }

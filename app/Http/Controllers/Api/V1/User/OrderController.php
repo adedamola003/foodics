@@ -55,4 +55,18 @@ class OrderController extends BaseController
 
     }
 
+    public function getOrderDetails($id)
+    {
+        //get order details
+        $orderDetails = $this->orderClass->getOrderDetails((int) $id);
+        //check if order exists
+        if ($orderDetails['status']){
+            //return success response
+            return $this->sendResponse($orderDetails['data'], 'Order details retrieved successfully.', 200);
+        }else{
+            //return error response
+            return $this->sendError('Order details retrieval failed.', $orderDetails['message']);
+        }
+    }
+
 }
