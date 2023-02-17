@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\V1\User\OrderController;
+use App\Http\Controllers\Api\V1\User\IngredientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,11 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], functi
 
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Authenticated user routes
+        //Order Routes
     Route::post('order/create', [OrderController::class, 'createOrder']);
     Route::get('order/{id}', [OrderController::class, 'getOrderDetails']);
+        //Ingredient Routes
+    Route::get('ingredients', [IngredientController::class, 'getIngredients']);
 
 
     });
