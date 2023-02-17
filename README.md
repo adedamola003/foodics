@@ -30,6 +30,7 @@ Mysql
 - clear cache (php artisan optimize)
 - clear config (php artisan config:clear)
 - run migrations for testing (php artisan migrate --env=testing)
+- remember to run php artisan config:clear after every change to the .env file and after testing
 
 
 #Usage

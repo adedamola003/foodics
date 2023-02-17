@@ -55,7 +55,11 @@ class OrderController extends BaseController
 
     }
 
-    public function getOrderDetails($id)
+    /**
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function getOrderDetails($id): JsonResponse
     {
         //get order details
         $orderDetails = $this->orderClass->getOrderDetails((int) $id);

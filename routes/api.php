@@ -34,6 +34,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1'], functi
     Route::get('order/{id}', [OrderController::class, 'getOrderDetails']);
         //Ingredient Routes
     Route::get('ingredients', [IngredientController::class, 'getIngredients']);
+    Route::get('ingredients/{id}', [IngredientController::class, 'getIngredient']);
+    Route::post('ingredients/top_up', [IngredientController::class, 'topUpIngredientStock']);
 
 
     });
